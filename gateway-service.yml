@@ -4,12 +4,9 @@ spring:
     name: gateway-service
   cloud:
     config:
-      importCheck:
-        enable: false
-      enabled: false
       discovery:
         serviceId: config-server
-        enabled: false
+        enabled: true
     gateway:
       routes:
         - id: checkout-service
