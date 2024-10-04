@@ -1,40 +1,31 @@
 spring:
   application:
-    name: gateway-service
+    name: gateway
   security:
     oauth2:
-      resourceserver:
+      resource server:
         jwt:
-          issuer-uri: http://keycloak:8080/realms/dh
+          issuer-uri: http://keycloak:8181/realms/spring-boot-realm-dev
   cloud:
-    config:
-      discovery:
-        serviceId: config-server
-        enabled: true
     gateway:
       default-filters:
         - TokenRelay=
       routes:
-        - id: checkout-service
-          uri: lb://checkout-service
+        - id: userService
+          uri: lb://userService
           predicates:
-            - Path=/checkout
-          filters:
-            - AddRequestHeader=X-Request-from, gateway
-            - AddResponseHeader=X-Response-Red, Blue
-        - id: products-service
-          uri: lb://products-service
+            - Path=/users/**
+        - id: userService
+          uri: lb://userService
           predicates:
-            - Path=/products
-            
+            - Path=/cards/**
+        - id: userService
+          uri: lb://userService
+          predicates:
+            - Path=/accounts/**
+        - id: registrationUserService
+          uri: lb://registrationUserService
+          predicates:
+            - Path=/registration/**
 server:
-  port: 8084
-  
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-server:8761/eureka/
+  port: 9090
