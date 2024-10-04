@@ -1,0 +1,8 @@
+spring.application.name=registrationUserService
+server.port = 8081
+
+keycloak.realm = spring-boot-realm-dev
+keycloak.domain = localhost:8181
+keycloak.adminClientId = spring-client-api-rest
+keycloak.adminClientSecret = a1YNPyP177bheDTMBIVSkYgqJGLxkXfT
+keycloak.urls.auth = http://${keycloak.domain}
