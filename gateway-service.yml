@@ -28,4 +28,4 @@ spring:
           predicates:
             - Path=/registration/**
 server:
-  port: 9090
+  port: 8080
